@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="hhh, Lovingd">
+    <meta name="keywords" content="计算机网络--网络五层结构功能理解, Lovingd">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>hhh | Lovingd</title>
+    <title>计算机网络--网络五层结构功能理解 | Lovingd</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hhh</h1>
+                    <h1 class="description center-align post-title">计算机网络--网络五层结构功能理解</h1>
                 </div>
             </div>
         </div>
@@ -395,7 +395,69 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <script>
+                <h1 id="计算机网络–网络五层结构功能理解"><a href="#计算机网络–网络五层结构功能理解" class="headerlink" title="计算机网络–网络五层结构功能理解"></a>计算机网络–网络五层结构功能理解</h1><h4 id="5层网络结构"><a href="#5层网络结构" class="headerlink" title="5层网络结构"></a>5层网络结构</h4><ul>
+<li>应用层</li>
+<li>运输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+<li>物理层</li>
+</ul>
+<h3 id="大致介绍一下各层级的主要作用和任务"><a href="#大致介绍一下各层级的主要作用和任务" class="headerlink" title="大致介绍一下各层级的主要作用和任务"></a>大致介绍一下各层级的主要作用和任务</h3><h4 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h4><p>​     在物理层上传输的数据单位是比特。所以物理层的一个主要功能就是<strong>考虑使用多大的电压表示“1”或“0”，以及接收方如何识别发送方所发送的比特</strong>；另外一个任务就是<strong>确定连接电缆的插头应当有多少根引脚，以及各引脚应该如何连接</strong></p>
+<p>​    综合来讲，<strong>物理层的主要任务就是考虑怎样才能在连接各种计算机的传输媒体上传输数据比特流</strong>。</p>
+<h4 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h4><p>​    大概念课本上基本都有描述，这里说一下主要的。</p>
+<p>​    数据链路层的主要任务就是<strong>在同一个局域网中，分组怎样从一个主机传送到另外一个主机</strong>（不经过路由）（ps：这里的 分组 在前面的 <a href="">互联网的核心部分</a> 有详细讲解）<strong>将网络层交下来的IP数据报组装成帧，在相邻节点之间的链路上面传送帧</strong></p>
+<p>帧内包括的数据有：同步信息、地址信息、以及差错控制<br>在几首数据时，控制信息使接收端能够知道一个帧是从哪个比特开始到哪个比特结束。这样数据链路层在接收到一个帧之后就可以从中提取出数据部分，上交给网络层。</p>
+<p>其中，数据链路层的主要工作有三点：</p>
+<ol>
+<li><p>封装成帧：给数据的前后添加商首部和尾部</p>
+</li>
+<li><p>透明传输：某一个实际存在的事物看起来好像确实不存在的一个方法（字节填充法）<br>这么说可能有的人不是很清楚这个到底是啥意思，其实所谓的透明传输就是<strong>不管所传输的数据是什么样的比特组合，都应当能在链路上面传送</strong>，但是如果我们所传输的数据中，恰好某一个比特组合与某一个控制信息一样，这样肯定乱套了啊，所以我们需要采取上面提到的<strong>字节填充法</strong>。</p>
+<p><strong>补充：字节填充法：</strong></p>
+<p>​    <strong>原理</strong>：发送端的数据链路层在数据中出现了控制字符”SOH“或”EOT“的前面加上一个转义字符”ESC“</p>
+<p>简单来说，发送端给特殊的比特组合前添加转义字符，接收端的数据链路层收到数据后把转义字符删除掉，再发给自己的网络层。这样相当于我们在数据链路层中实现了一个方法，但是在别的层级中好像啥也没干—–这就是透明传输</p>
+</li>
+<li><p>差错检测：控制信息还能够检测所收到的帧中有无差错，如果有差错就丢弃这个出错的帧，避免后面浪费资源（ps：如果需要改正这些出错的帧，就需要采用可靠传输协议RTP，这种方法会使数据链路层的协议复杂一些）。</p>
+</li>
+</ol>
+<h4 id="网络层（IP层）"><a href="#网络层（IP层）" class="headerlink" title="网络层（IP层）"></a>网络层（IP层）</h4><p>​    主要任务：</p>
+<ol>
+<li>分组怎样从一个网络通过路由器转发到另一个网络</li>
+<li>为交换网上的不同主机提供通信服务</li>
+<li>把传输层产生的报文段或用户数据报封装成分组或包进行传送(IP数据报)</li>
+<li>选择合适的路由，使源主机运输层传下来的分组能够通过网络中的路由器找到目的主机</li>
+</ol>
+<h4 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h4><p>​    主要任务：向两个住进中进程之间的通信提供通用的数据传输服务</p>
+<p>​    这里涉及到两个协议（TCP/UDP）：</p>
+<p>​    TCP：面向连接的、可靠的数据传输服务，传输的数据单位是报文段</p>
+<p>​    UDP：无连接的、尽最大努力的数据传输服务(不可靠的)，数据传输单位是用户数据报</p>
+<h4 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h4><p>​    主要任务：位于不同主机中的多个应用进程之间进行通信和协同工作</p>
+<p>​    涉及到DNS域名解析</p>
+<h4 id="每一个的层级任务已经讲解完了，现在来看一下一条数据是怎么进行传递的："><a href="#每一个的层级任务已经讲解完了，现在来看一下一条数据是怎么进行传递的：" class="headerlink" title="每一个的层级任务已经讲解完了，现在来看一下一条数据是怎么进行传递的："></a>每一个的层级任务已经讲解完了，现在来看一下一条数据是怎么进行传递的：</h4><p>1、某进程(也就是在应用层)准备好待传输数据，若目的地址是域名则要先通过DNS解析成IP地址</p>
+<p>2、交付到运输层(TCP/UDP层)，运输层对数据进行适当的分组等操作，后对每一个分组数组加上首部形成报文段(或用户数据报)首部包括源地址、源端口、目的地址、目的端口和一些其他的诸如校验和等数据</p>
+<p>3、交付到网际层(IP层)，对分组数据加上首部形成IP数据报，首部包括源地址、目的地址(跟运输层的目的地址不同，运输层的目的地址是数据要传送的最终地址，而该目的地址是通过路由表信息得出，是该数据下一步该转移的目的计算机)和校验和等数据</p>
+<p>4、交付到数据链路层(mac层)，先是对把数据封装成帧(也就是添加首部[SOH]和尾部[EOT])，然后进行透明传输(也就是封装的数据里面，如果出现首部SOH和尾部EOT这样的数据，对其进行转义，也就是加上ESC转义字符，这种方法称为字节/字符填充)</p>
+<p>5、交付到物理层，根据数据链路层的mac知道要传输到目的计算机，通过特定的传输介质传送到下一个地址</p>
+<p>6、若源主机与最终目的主机在同一个网段，则该地址是最终的目的主机，开始接收数据，进入第7步骤，若源主机和最终目的主机不在同一个网段，进入第11步骤</p>
+<p>7、交付到数据链路层，对数据进行卸装，该层会对接收的数据进行差错检测，有差错的数据都会被丢弃</p>
+<p>8、交付到IP层，解帧校验</p>
+<p>9、交付到运输层，在该主机上，根据端口找到对应的应用，当使用的TCP协议时，提供一种面向连接的可靠的传输服务，可以说是建立了一个虚拟通道，源主机的数据通过该虚拟通道进行传输；若是使用的UDP协议时，提供一种面向的非连接的尽最大努力的不可靠的传输服务，数据传输快，但是无法保证数据100%传输。</p>
+<p>10、建立了传输连接后，应用开始接收数据，发送方数据和接收方都必须满足相同的标准应用层协议，如http、ftp、smtp等，通过标准协议应用即可正确的接收源主机发送过来的数据。</p>
+<p>11、该计算机不是最终主机，那该计算机就是路由器也就是用于转发分组数据的中转站，首先接收数据的处理同步骤7和8一样，然后接下来的流程又是如同步骤3,</p>
+<p>12、如此循环直至找到最终主机，将数据传送到目的应用</p>
+<p>数据封装过程的图解如下：</p>
+<p><img src="https://img-blog.csdn.net/20180808192707663?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMyNTYzNzEz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="数据封装过程"></p>
+<p>其实到这里基本上我们对各层级之间的数据处理关系已经了解了，下面有一个特别贴切的例子（俺逛csdn时候看到的，来源戳这里👉<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32563713/article/details/81514061">https://blog.csdn.net/qq_32563713/article/details/81514061</a>）：</p>
+<h4 id="案例：从西班牙去罗马的贸易商人"><a href="#案例：从西班牙去罗马的贸易商人" class="headerlink" title="案例：从西班牙去罗马的贸易商人"></a>案例：从西班牙去罗马的贸易商人</h4><p>1、 要想贸易获得成功，首先要有至少一条路，能够从西班牙通向罗马。此层为【物理层】</p>
+<p>2、有了路是不是就能去贸易了？还要保证路上不会把商人的货物给磕坏了，要有一层保护的包装。引出第二层，【数据链路层】</p>
+<p>3、所谓条条道路通罗马。并不只有一条路能够到达罗马，那么在那么多的选择中选一条最短的，或者路费的成本最少的，这才符合商人的利益。引出第三层，【网络层】</p>
+<p>以上三层为网络中的下三层，叫媒体层，让我们来看看另外4层。</p>
+<p>4、贸易出门前要先检查一下自己的货，有没有拿错了，事先要检查过，如果错了要重新取货，引出第四层，【传输层】。</p>
+<p>5、是不是可以上路了？还不行。我们要和罗马联系好， 如果我们这边的货物到了那边卖不出去怎么办？我们首先要交流、协商一下，看看罗马的市场情况，能和那边的另外一个商人合作的话就更好了，这就需要一些外交的关系。叫做【会话层】。</p>
+<p>6、好象所有的事情都准备好了，但是商人到了罗马以后突然发现，他的商队里没有人能听懂罗马人的话，罗马人也没有人能听懂西班牙语，这个时候，还需要一个翻译，要么把两种语言都转换成一种国际通用语言，比如说英语，要么至少能让双方能交流。这里就是【表示层】。</p>
+<p>7、到了罗马了，最终需要在交易所中把商品卖掉，这个交易所就是一个交易平台,相当于各个软件平台，引出最后一层，【应用层】。</p>
+<p>其实，从应用层到物理层，再从物理层到应用层，都是一个包洋葱和剥洋葱的过程，中间的每一片洋葱都是一个层级的任务，这样想是不是好理解多了🙂</p>
+<p>网络层级之间的关系到这里已经说完啦，有什么地方不对，望斧正，觉得俺写的还勉强可以的，希望能星星一下，谢啦。</p>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -438,7 +500,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lovingdrefuse.github.io/2020/10/22/hhh/">https://lovingdrefuse.github.io/2020/10/22/hhh/</a>
+                    <a href="https://lovingdrefuse.github.io/2020/10/22/jiwang02/">https://lovingdrefuse.github.io/2020/10/22/jiwang02/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -646,22 +708,26 @@
                 <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/2020/10/22/hhh/">
+                <a href="/2020/10/22/jiwang02/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="hhh">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="计算机网络--网络五层结构功能理解">
                         
-                        <span class="card-title">hhh</span>
+                        <span class="card-title">计算机网络--网络五层结构功能理解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return
+                            计算机网络–网络五层结构功能理解5层网络结构
+应用层
+运输层
+网络层
+数据链路层
+物理层
+
+大致介绍一下各层级的主要作用和任务物理层​     在物理层上传输的数据单位是比特。所以物理层的一个主要功能就是考虑使用多大的电压表示“1”或“0”
                         
                     </div>
                     <div class="publish-info">
